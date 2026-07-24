@@ -1,2 +1,21 @@
 reference/
 DragonScale Upscaler.code-workspace
+mod/SKSE/Plugins/DragonScale/nvngx_dlss.dll
+mod/SKSE/Plugins/DragonScale/amd_fidelityfx_*.dll
+mod/SKSE/Plugins/DragonScale/dependencies.lock.json
+tools/.cache/
+
+# Local SKSE build environment. Keep only source and build metadata in git.
+# Tools, caches, dependencies, SDK source, and native build outputs are restored by tools/bootstrap-dev.ps1 and tools/build.ps1.
+dev/**
+!dev/
+!dev/projects/
+dev/projects/**
+!dev/projects/dragonscale-upscaler/
+dev/projects/dragonscale-upscaler/**
+!dev/projects/dragonscale-upscaler/.gitignore
+!dev/projects/dragonscale-upscaler/README.md
+!dev/projects/dragonscale-upscaler/xmake.lua
+!dev/projects/dragonscale-upscaler/xmake-requires.lock
+!dev/projects/dragonscale-upscaler/src/
+!dev/projects/dragonscale-upscaler/src/**

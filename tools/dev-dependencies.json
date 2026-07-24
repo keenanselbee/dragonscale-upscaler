@@ -1,0 +1,32 @@
+{
+  "xmake": {
+    "version": "v3.0.9",
+    "url": "https://github.com/xmake-io/xmake/releases/download/v3.0.9/xmake-bundle-v3.0.9.win64.exe",
+    "sha256": "0400c8b07738ee75fbb30c60e7f1837f08acdc6264ad57463db3d169717bc9e6"
+  },
+  "sevenZip": {
+    "version": "19.00",
+    "url": "https://github.com/xmake-mirror/7zip/releases/download/19.00/7z19.00-x64.zip",
+    "sha256": "fc21cf510d70a69bfa8e5b0449fe0a054fb76e2f8bd568364821f319c8b1d86d"
+  },
+  "repositories": [
+    {
+      "name": "CommonLibSSE-NG",
+      "path": "dev/projects/dragonscale-upscaler/lib/commonlibsse-ng",
+      "url": "https://github.com/alandtse/CommonLibVR.git",
+      "commit": "539d4ce50969e8d23f4d507a7bc3dd955a4de93f"
+    },
+    {
+      "name": "ClibUtil",
+      "path": "dev/projects/dragonscale-upscaler/ClibUtil",
+      "url": "https://github.com/powerof3/ClibUtil.git",
+      "commit": "6f430ac180ba0e64128bba8d632c20367833c5ef"
+    },
+    {
+      "name": "xbyak",
+      "path": "dev/projects/dragonscale-upscaler/xbyak",
+      "url": "https://github.com/herumi/xbyak.git",
+      "commit": "c506ecd5134122115a981fdd45c2a756f9ce20ac"
+    }
+  ]
+}

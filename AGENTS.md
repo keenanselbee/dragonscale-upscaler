@@ -1,7 +1,7 @@
 AGENTS.md
 =========
 
-DragonScale Upscaler is a Skyrim SE upscaler mod with an intentionally symlinked SKSE plugin project.
+DragonScale Upscaler is a Skyrim SE upscaler mod with a tracked SKSE plugin source slice under `dev/projects/dragonscale-upscaler`.
 
 
 Command Speed Rules
@@ -30,10 +30,8 @@ Working Rules
 - Prefer not to add functions whose body is only one line of code unless there is a good reason, such as matching an existing interface, naming a repeated concept, or improving readability at the call site.
 - Do not revert, overwrite, move, remove, or reformat unrelated user changes.
 - Do not create, edit, move, delete, or overwrite files outside the repository unless the user explicitly asks for a specific external path.
-- This repo intentionally uses `dev/projects/dragonscale-upscaler` as a symlinked SKSE project. It currently resolves to `C:\Repositories\Iron Soul\dev\projects\dragonscale-upscaler`.
-- Codex may edit and build files through that symlink only for DragonScale Upscaler SKSE plugin work. Treat that resolved project as part of this repo's allowed working area for that purpose.
-- Do not edit, move, delete, stage, or commit other `C:\Repositories\Iron Soul` files, sibling projects, or Iron Soul mod files while working from this repo unless the user explicitly asks.
-- The symlink target is currently part of the Iron Soul repository context. Inspect and report outer repo status and `C:\Repositories\Iron Soul` status for `dev/projects/dragonscale-upscaler` separately when native source changes are involved.
+- The repo tracks DragonScale SKSE plugin source/config files under `dev/projects/dragonscale-upscaler`.
+- Treat `dev/projects/dragonscale-upscaler` as part of this repo. Do not edit, move, delete, stage, or commit unrelated external build-environment files unless the user explicitly asks.
 - Keep temporary output, scratch files, generated inspection data, and staging inside this repository, preferably under `.codex-temp`.
 - Treat reference, vendor, generated, and third-party directories as read-only unless the user or repository documentation explicitly says otherwise.
 - Read relevant project documentation before making nontrivial changes.
@@ -50,7 +48,7 @@ Shell Reliability
 - Prefer commands that set their working directory explicitly, such as `git -C <repo> ...`, when the repository path is known.
 - Do not assume relative paths resolve from the repository root unless the command sets location itself.
 - If a command unexpectedly lands outside the repository, stop and rerun it with an explicit repository path.
-- Treat `C:\Repositories\DragonScale Upscaler` as the outer repo root. Treat `C:\Repositories\DragonScale Upscaler\dev\projects\dragonscale-upscaler` as the canonical SKSE project path, even though it resolves through a symlink.
+- Treat `C:\Repositories\DragonScale Upscaler` as the repo root. Treat `C:\Repositories\DragonScale Upscaler\dev\projects\dragonscale-upscaler` as the canonical SKSE project path.
 
 
 Project Discovery
@@ -68,9 +66,9 @@ SKSE Plugin Build Automation
 ----------------------------
 
 - Use `tools/build-skse-plugin.ps1` for DragonScale Upscaler SKSE plugin verification and DLL refresh.
-- The SKSE plugin source lives in `dev/projects/dragonscale-upscaler/src` through the intentional symlink described above.
+- The SKSE plugin source lives in `dev/projects/dragonscale-upscaler/src`.
 - The wrapper builds `dev/projects/dragonscale-upscaler` target `dragonscale-upscaler`.
-- The wrapper may use shared xmake tooling and xmake package state from the symlink target's owning dev tree, currently `C:\Repositories\Iron Soul\dev\tools\xmake\xmake.exe` and `C:\Repositories\Iron Soul\dev\.xmake`. Do not otherwise modify Iron Soul files.
+- The wrapper may use repo-local xmake tooling and xmake package state when available.
 - Verify-only is the default wrapper mode and must not update `mod/SKSE/plugins/dragonscale-upscaler.dll`.
 - For completed native source changes, run `tools/build-skse-plugin.ps1 -RefreshRepoDll` after a successful verify build unless the user explicitly asks not to refresh the shipped DLL.
 - Refresh builds increment the SKSE plugin version in `dev/projects/dragonscale-upscaler/xmake.lua` and the matching runtime log version in `dev/projects/dragonscale-upscaler/src/plugin.h` before compiling.
@@ -78,8 +76,7 @@ SKSE Plugin Build Automation
 - Do not copy debug DLLs or any build output other than the release DLL.
 - Do not stage or commit the DLL from inside the script. When native source changes exist, stage `mod/SKSE/plugins/dragonscale-upscaler.dll` with the matching source change. Use a standalone `build(native): update SKSE plugin binary` commit only for an explicitly requested DLL-only refresh or generated-output repair.
 - Do not assume `cl`, `cmake`, or `ninja` are on the shell PATH. Let the repo wrapper locate MSVC and any repo-local or shared xmake tooling.
-- Do not copy Iron Soul's dev environment into another repository unless the user explicitly asks. A repo may instead declare a symlinked SKSE project or shared xmake tool/cache path in its own `AGENTS.md`.
-- Follow symlinked project roots only when the repo-specific `AGENTS.md` explicitly names them as intentional editable paths. Otherwise treat symlink targets outside the repo as external and read-only.
+- Do not copy another repository's dev environment into this repository unless the user explicitly asks.
 - Verify-only native builds must not refresh shipped DLLs. DLL refresh builds may copy only the successful release DLL into `mod/SKSE/plugins`.
 - Keep refreshed DLLs in the same commit as the native source change that produced them unless the user explicitly asks for a DLL-only refresh.
 - Do not run dependency upgrades, delete package caches, or change global Git `safe.directory` settings unless the user explicitly asks.
