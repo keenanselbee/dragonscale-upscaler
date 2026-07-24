@@ -1,0 +1,19 @@
+DragonScale Dependency Installer
+================================
+
+Run DragonScale.DependencyInstaller.exe from this mod folder.
+
+By default the installer downloads DragonScale's DLSS dependency from the
+official NVIDIA GitHub release and installs it here:
+
+  SKSE\Plugins\DragonScale
+
+It also writes:
+
+  SKSE\Plugins\DragonScale\dependencies.lock.json
+
+Command line options:
+
+  DragonScale.DependencyInstaller.exe --all
+  DragonScale.DependencyInstaller.exe --nvidia
+  DragonScale.DependencyInstaller.exe --all --dry-run

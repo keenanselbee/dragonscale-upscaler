@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+  <package
+    id="nvidia.dlss.super_resolution"
+    name="NVIDIA DLSS Super Resolution"
+    vendor="NVIDIA"
+    owner="NVIDIA"
+    repo="DLSS"
+    release="latest"
+    assetRegex=".*windows.*\.zip$"
+    enabledByDefault="true"
+    licenseUrl="https://github.com/NVIDIA/DLSS/blob/main/LICENSE.txt">
+    <file
+      searchRegex="(^|/)lib/Windows_x86_64/rel/nvngx_dlss\.dll$|(^|/)nvngx_dlss\.dll$"
+      outputFile="nvngx_dlss.dll"
+      required="true" />
+  </package>
+</dependencies>
